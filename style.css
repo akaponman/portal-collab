@@ -593,6 +593,13 @@ ul { list-style: none; }
   line-height: 1.7;
 }
 .blog-more { text-align: center; }
+.blog-loading {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--text-light);
+  font-size: 15px;
+  grid-column: 1 / -1;
+}
 
 /* ===========================
    Platform Cards (ヘッダー画像付き)

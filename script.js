@@ -360,6 +360,51 @@
   setInterval(pollLiveStatus, CONFIG.liveCheckInterval);
 
   // ===========================
+  // Blog: WP REST APIから最新記事を取得
+  // ===========================
+  const BLOG_API = 'https://akahara-vlab.com/wp-json/wp/v2/posts?per_page=3&_embed=wp:featuredmedia&_fields=title,link,date,excerpt,_links';
+  const blogGrid = document.getElementById('blog-grid');
+
+  async function loadLatestPosts() {
+    try {
+      const res = await fetch(BLOG_API);
+      if (!res.ok) throw new Error(res.status);
+      const posts = await res.json();
+
+      const animations = ['scroll-slide-left', '', 'scroll-slide-right'];
+      const delays = [100, 250, 400];
+
+      blogGrid.innerHTML = posts.map((post, i) => {
+        const title = post.title.rendered;
+        const link = post.link;
+        const date = new Date(post.date);
+        const dateStr = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+        const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '').trim().slice(0, 80);
+        const media = post._embedded && post._embedded['wp:featuredmedia'];
+        const thumb = media && media[0] && media[0].source_url ? media[0].source_url : '';
+        const animClass = animations[i] ? ' ' + animations[i] : '';
+
+        return `<a href="${link}" target="_blank" rel="noopener" class="blog-card scroll-reveal${animClass}" data-delay="${delays[i]}">
+          <div class="blog-card-thumb">
+            ${thumb ? `<img src="${thumb}" alt="" loading="lazy">` : '<div style="height:100%;background:var(--bg-alt)"></div>'}
+          </div>
+          <div class="blog-card-body">
+            <time class="blog-card-date">${dateStr}</time>
+            <h3 class="blog-card-title">${title}</h3>
+            <p class="blog-card-excerpt">${excerpt}</p>
+          </div>
+        </a>`;
+      }).join('');
+
+      blogGrid.querySelectorAll('.scroll-reveal').forEach((el) => revealObserver.observe(el));
+    } catch (e) {
+      blogGrid.innerHTML = '<p style="text-align:center;color:var(--text-sub)">記事の読み込みに失敗しました。<a href="https://akahara-vlab.com" target="_blank">ブログを直接見る</a></p>';
+    }
+  }
+
+  loadLatestPosts();
+
+  // ===========================
   // Smooth scroll
   // ===========================
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
