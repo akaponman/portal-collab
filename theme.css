@@ -1,0 +1,148 @@
+/* ===========================
+   Theme Configuration
+   ===========================
+
+   カラーテーマの変更方法:
+   1. 下の :root の値を書き換えるだけでサイト全体の色が変わります
+   2. プリセットを使う場合は、使いたいプリセットのコメントを外してください
+   3. Claude Code に「テーマを青系にして」等と指示すれば自動で変更できます
+
+   =========================== */
+
+/* ----------------------------
+   ACTIVE THEME: Kawaii Purple × Pink
+   コラボ向け・ポップで華やかなデザイン
+   ---------------------------- */
+:root {
+  /* メインカラー（ボタン、見出し、アクセント） */
+  --color-primary: #6C63FF;
+  --color-primary-light: #A5A0FF;
+  --color-primary-pale: #EDE9FF;
+
+  /* サブカラー（CTA、ハイライト） */
+  --color-secondary: #FF6B9D;
+  --color-secondary-light: #FFB3CC;
+
+  /* アクセント（装飾、バッジ） */
+  --color-accent: #FFD93D;
+  --color-accent-light: #FFF3B0;
+
+  /* 補助カラー */
+  --color-mint: #6ECFBD;
+  --color-mint-light: #B8F0E6;
+  --color-sky: #74C0FC;
+
+  /* ヒーロー背景グラデーション */
+  --bg-hero: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #ffa0c4 100%);
+
+  /* ページ背景 */
+  --bg-main: #FFF8FA;
+  --bg-alt: #FFF0F5;
+
+  /* フッター */
+  --color-footer: #2D2B55;
+
+  /* テキスト */
+  --text-main: #3D3555;
+  --text-sub: #7B7394;
+  --text-light: #A8A0BE;
+
+  /* シャドウ（primaryに合わせた色味） */
+  --shadow-color: 108, 99, 255;
+  --shadow-soft: 0 4px 20px rgba(var(--shadow-color), 0.1);
+  --shadow-card: 0 8px 32px rgba(var(--shadow-color), 0.12);
+  --shadow-hover: 0 12px 40px rgba(var(--shadow-color), 0.2);
+
+  /* パーティクルの色（JSから参照） */
+  --particle-colors: #6C63FF, #FF6B9D, #FFD93D, #6ECFBD, #74C0FC;
+}
+
+/* ----------------------------
+   PRESET: Cool Mint （個人ブロガー向け・落ち着いた知的な印象）
+   使う場合はこのブロックのコメントを外す
+   ----------------------------
+:root {
+  --color-primary: #0EA5A0;
+  --color-primary-light: #5EEAD4;
+  --color-primary-pale: #CCFBF1;
+  --color-secondary: #6366F1;
+  --color-secondary-light: #A5B4FC;
+  --color-accent: #F59E0B;
+  --color-accent-light: #FEF3C7;
+  --color-mint: #6ECFBD;
+  --color-mint-light: #B8F0E6;
+  --color-sky: #38BDF8;
+  --bg-hero: linear-gradient(135deg, #0EA5A0 0%, #065F5B 40%, #1E293B 100%);
+  --bg-main: #F0FDFA;
+  --bg-alt: #E6FAF5;
+  --color-footer: #134E4A;
+  --text-main: #1A3A37;
+  --text-sub: #4A7C78;
+  --text-light: #7FABA6;
+  --shadow-color: 14, 165, 160;
+  --shadow-soft: 0 4px 20px rgba(var(--shadow-color), 0.1);
+  --shadow-card: 0 8px 32px rgba(var(--shadow-color), 0.12);
+  --shadow-hover: 0 12px 40px rgba(var(--shadow-color), 0.2);
+  --particle-colors: #0EA5A0, #6366F1, #F59E0B, #38BDF8, #5EEAD4;
+}
+*/
+
+/* ----------------------------
+   PRESET: Warm Sunset （クリエイター向け・暖色系で親しみやすい）
+   使う場合はこのブロックのコメントを外す
+   ----------------------------
+:root {
+  --color-primary: #F97316;
+  --color-primary-light: #FB923C;
+  --color-primary-pale: #FFF7ED;
+  --color-secondary: #E11D48;
+  --color-secondary-light: #FDA4AF;
+  --color-accent: #FBBF24;
+  --color-accent-light: #FEF9C3;
+  --color-mint: #34D399;
+  --color-mint-light: #A7F3D0;
+  --color-sky: #38BDF8;
+  --bg-hero: linear-gradient(135deg, #F97316 0%, #E11D48 50%, #7C3AED 100%);
+  --bg-main: #FFFBF5;
+  --bg-alt: #FFF5EB;
+  --color-footer: #431407;
+  --text-main: #3B1A06;
+  --text-sub: #78533B;
+  --text-light: #A38472;
+  --shadow-color: 249, 115, 22;
+  --shadow-soft: 0 4px 20px rgba(var(--shadow-color), 0.1);
+  --shadow-card: 0 8px 32px rgba(var(--shadow-color), 0.12);
+  --shadow-hover: 0 12px 40px rgba(var(--shadow-color), 0.2);
+  --particle-colors: #F97316, #E11D48, #FBBF24, #34D399, #7C3AED;
+}
+*/
+
+/* ----------------------------
+   PRESET: Cyber Dark （ゲーマー向け・ダークモード）
+   使う場合はこのブロックのコメントを外す
+   ----------------------------
+:root {
+  --color-primary: #8B5CF6;
+  --color-primary-light: #A78BFA;
+  --color-primary-pale: rgba(139, 92, 246, 0.15);
+  --color-secondary: #06B6D4;
+  --color-secondary-light: #67E8F9;
+  --color-accent: #FBBF24;
+  --color-accent-light: rgba(251, 191, 36, 0.2);
+  --color-mint: #10B981;
+  --color-mint-light: #6EE7B7;
+  --color-sky: #38BDF8;
+  --bg-hero: linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #312E81 100%);
+  --bg-main: #0F172A;
+  --bg-alt: #1E293B;
+  --color-footer: #020617;
+  --text-main: #E2E8F0;
+  --text-sub: #94A3B8;
+  --text-light: #64748B;
+  --shadow-color: 139, 92, 246;
+  --shadow-soft: 0 4px 20px rgba(var(--shadow-color), 0.15);
+  --shadow-card: 0 8px 32px rgba(var(--shadow-color), 0.2);
+  --shadow-hover: 0 12px 40px rgba(var(--shadow-color), 0.3);
+  --particle-colors: #8B5CF6, #06B6D4, #FBBF24, #10B981, #F472B6;
+}
+*/

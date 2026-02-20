@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あかはらVラボ — わさび × あかはら。</title>
+  <meta name="description" content="アカハライモリのVTuber「あかはら。」とニホンイシガメ「わさび」のコラボポータル。ブログ、配信、SNSのすべてがここに。">
+  <meta property="og:title" content="あかはらVラボ — わさび × あかはら。">
+  <meta property="og:description" content="AIとテクノロジーの実験室。あかはら。とわさびがお届けする最新情報ポータル。">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ライブ配信バックグラウンド（配信中のみ表示） -->
+  <div id="live-bg" class="live-bg hidden">
+    <div id="live-player" class="live-player"></div>
+    <div class="live-overlay"></div>
+    <div class="live-badge">
+      <span class="live-dot"></span> LIVE
+    </div>
+  </div>
+
+  <!-- パーティクル背景 -->
+  <canvas id="particles" class="particles"></canvas>
+
+  <!-- ナビゲーション -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-icon">🔬</span>
+        <span class="nav-logo-text">あかはらVラボ</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">ふたりについて</a></li>
+        <li><a href="#platforms">コンテンツ</a></li>
+        <li><a href="#activities">かつどう</a></li>
+        <li><a href="#blog">ブログ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <header class="hero" id="hero">
+    <!-- 動画背景（配信 or アーカイブ） -->
+    <div class="hero-video-bg" id="hero-video-bg">
+      <div id="hero-video-player" class="hero-video-player"></div>
+      <div class="hero-video-overlay"></div>
+    </div>
+    <div class="hero-bg-images">
+      <div class="hero-bg-img hero-bg-img-1 parallax-bg" data-speed="0.3">
+        <img src="images/hero-deco-1.png" alt="">
+      </div>
+      <div class="hero-bg-img hero-bg-img-2 parallax-bg" data-speed="0.15">
+        <img src="images/hero-deco-2.png" alt="">
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-characters">
+        <div class="hero-char hero-char-akahara float-slow">
+          <img src="images/akahara.png" alt="あかはら。" class="char-img">
+          <div class="char-speech char-speech-left">やっほー！</div>
+        </div>
+        <div class="hero-char hero-char-wasabi float-fast">
+          <img src="images/wasabi.png" alt="わさび" class="char-img">
+          <div class="char-speech char-speech-right">よろしくね</div>
+        </div>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-line1">わさび</span>
+        <span class="hero-title-x">×</span>
+        <span class="hero-title-line2">あかはら。</span>
+      </h1>
+      <p class="hero-subtitle">AIとテクノロジーの実験室へようこそ</p>
+      <div class="hero-cta-group">
+        <a href="#about" class="btn btn-primary bounce-hover">もっと知る</a>
+        <a href="https://akahara-vlab.com" class="btn btn-secondary bounce-hover" target="_blank" rel="noopener">ブログを読む</a>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,60 1440,60 L1440,120 L0,120 Z" fill="var(--bg-main)"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ふたりについて -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title scroll-reveal">
+        <span class="section-title-icon">🐾</span>
+        ふたりについて
+      </h2>
+      <div class="about-grid">
+        <div class="about-card scroll-reveal scroll-slide-left" data-delay="100">
+          <div class="about-card-img-wrap">
+            <img src="images/akahara-profile.png" alt="あかはら。" class="about-card-img parallax-img" data-speed="0.08">
+            <div class="about-card-badge">VTuber</div>
+          </div>
+          <div class="about-card-body">
+            <h3 class="about-card-name">あかはら。</h3>
+            <p class="about-card-species">アカハライモリ / 3代目 / 4歳</p>
+            <p class="about-card-desc">
+              AIとテクノロジーに興味津々のVTuber。
+              日々最新のテクノロジーを追いかけて、
+              みんなに分かりやすく届けるのが好き。
+              Twitchでゲーム配信もやってるよ。
+            </p>
+          </div>
+        </div>
+        <div class="about-card scroll-reveal scroll-slide-right" data-delay="300">
+          <div class="about-card-img-wrap">
+            <img src="images/wasabi-profile.png" alt="わさび" class="about-card-img parallax-img" data-speed="0.08">
+            <div class="about-card-badge">ブロガー</div>
+          </div>
+          <div class="about-card-body">
+            <h3 class="about-card-name">わさび</h3>
+            <p class="about-card-species">ニホンイシガメ / 3歳</p>
+            <p class="about-card-desc">
+              あかはら。の相棒。ブログ「あかはらVラボ」の
+              記事を担当している。Claude AIの専門家で、
+              英語圏の最新AI情報を日本語でいち早く届ける。
+              ちょっと短気だけど、情報は正確。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="about-together scroll-reveal" data-delay="500">
+        <p>
+          ふたりで運営する「あかはらVラボ」は、AIツールの活用法や最新テクノロジーのレビュー、
+          プログラミングの話題まで幅広くカバー。「はやい」「わかりやすい」がモットー。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- コンテンツ一覧（ヘッダー画像付きプラットフォームカード） -->
+  <section class="section section-alt" id="platforms">
+    <div class="container">
+      <h2 class="section-title scroll-reveal">
+        <span class="section-title-icon">🌐</span>
+        コンテンツ
+      </h2>
+      <div class="platform-grid">
+
+        <!-- X / Twitter -->
+        <a href="https://x.com/akaponpon440" target="_blank" rel="noopener" class="platform-card scroll-reveal scroll-scale" data-delay="100">
+          <div class="platform-header">
+            <img src="images/header-x.png" alt="X header" class="platform-header-img parallax-img" data-speed="0.06" loading="lazy">
+            <div class="platform-header-overlay"></div>
+            <div class="platform-header-label">𝕏</div>
+          </div>
+          <div class="platform-body">
+            <h3>X / Twitter</h3>
+            <p>日々のAIニュースや気づきを発信中</p>
+          </div>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/channel/UC1dbbwy-RbesfO0Wq0xMAow" target="_blank" rel="noopener" class="platform-card scroll-reveal scroll-scale" data-delay="200">
+          <div class="platform-header">
+            <img src="images/header-youtube.png" alt="YouTube header" class="platform-header-img parallax-img" data-speed="0.06" loading="lazy">
+            <div class="platform-header-overlay"></div>
+            <div class="platform-header-label">▶</div>
+          </div>
+          <div class="platform-body">
+            <h3>YouTube</h3>
+            <p>Special thanks! pyonちゃん、協力ありがとう!</p>
+          </div>
+        </a>
+
+        <!-- note -->
+        <a href="https://note.com/akahara_vlab" target="_blank" rel="noopener" class="platform-card scroll-reveal scroll-scale" data-delay="300">
+          <div class="platform-header">
+            <img src="images/header-note.png" alt="note header" class="platform-header-img parallax-img" data-speed="0.06" loading="lazy">
+            <div class="platform-header-overlay"></div>
+            <div class="platform-header-label">📝</div>
+          </div>
+          <div class="platform-body">
+            <h3>note</h3>
+            <p>深掘り記事やコラムを掲載</p>
+          </div>
+        </a>
+
+        <!-- Qiita -->
+        <a href="https://qiita.com/akahara-studyroom" target="_blank" rel="noopener" class="platform-card scroll-reveal scroll-scale" data-delay="400">
+          <div class="platform-header">
+            <img src="images/header-qiita.png" alt="Qiita header" class="platform-header-img parallax-img" data-speed="0.06" loading="lazy">
+            <div class="platform-header-overlay"></div>
+            <div class="platform-header-label">Q</div>
+          </div>
+          <div class="platform-body">
+            <h3>Qiita</h3>
+            <p>技術記事・エンジニア向けTips</p>
+          </div>
+        </a>
+
+        <!-- Zenn -->
+        <a href="https://zenn.dev/wasabi_vlab" target="_blank" rel="noopener" class="platform-card scroll-reveal scroll-scale" data-delay="500">
+          <div class="platform-header">
+            <img src="images/header-zenn.png" alt="Zenn header" class="platform-header-img parallax-img" data-speed="0.06" loading="lazy">
+            <div class="platform-header-overlay"></div>
+            <div class="platform-header-label">Z</div>
+          </div>
+          <div class="platform-body">
+            <h3>Zenn</h3>
+            <p>技術書・スクラップを公開中</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- かつどう（配信系） -->
+  <section class="section" id="activities">
+    <div class="container">
+      <h2 class="section-title scroll-reveal">
+        <span class="section-title-icon">🎮</span>
+        はいしん
+      </h2>
+      <div class="stream-grid">
+
+        <!-- Twitch -->
+        <div class="stream-card scroll-reveal scroll-slide-left" data-delay="100">
+          <div class="stream-embed" id="twitch-embed">
+            <img src="images/twitch-offline.png" alt="Twitch" class="stream-offline-img parallax-img" data-speed="0.05" loading="lazy">
+            <div class="stream-offline-overlay">
+              <span class="stream-offline-icon">🎮</span>
+              <span class="stream-offline-text">Twitch</span>
+              <span class="stream-offline-status">オフライン</span>
+            </div>
+          </div>
+          <div class="stream-info">
+            <h3>Twitch</h3>
+            <p>ゲーム配信や作業配信。あかはら。がリアルタイムで遊んだり作ったりする様子をお届け。</p>
+            <a href="https://www.twitch.tv/akahara_genious" target="_blank" rel="noopener" class="btn btn-small btn-twitch bounce-hover">チャンネルを見る</a>
+          </div>
+        </div>
+
+        <!-- YouTube -->
+        <div class="stream-card scroll-reveal scroll-slide-right" data-delay="300">
+          <div class="stream-embed" id="youtube-embed">
+            <img src="images/youtube-offline.png" alt="YouTube" class="stream-offline-img parallax-img" data-speed="0.05" loading="lazy">
+            <div class="stream-offline-overlay">
+              <span class="stream-offline-icon">▶</span>
+              <span class="stream-offline-text">YouTube</span>
+              <span class="stream-offline-status">オフライン</span>
+            </div>
+          </div>
+          <div class="stream-info">
+            <h3>YouTube</h3>
+            <p class="youtube-thanks">Special thanks to pyon-chan for all the help! 🎉</p>
+            <a href="https://www.youtube.com/channel/UC1dbbwy-RbesfO0Wq0xMAow" target="_blank" rel="noopener" class="btn btn-small btn-youtube bounce-hover">チャンネルを見る</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ギャラリー（スクロール連動画像帯） -->
+  <section class="section section-alt" id="gallery">
+    <div class="gallery-strip">
+      <div class="gallery-track" id="gallery-track">
+        <div class="gallery-item"><img src="images/gallery-1.png" alt="" loading="lazy"></div>
+        <div class="gallery-item"><img src="images/gallery-2.png" alt="" loading="lazy"></div>
+        <div class="gallery-item"><img src="images/gallery-3.png" alt="" loading="lazy"></div>
+        <div class="gallery-item"><img src="images/gallery-4.png" alt="" loading="lazy"></div>
+        <div class="gallery-item"><img src="images/gallery-5.png" alt="" loading="lazy"></div>
+        <div class="gallery-item"><img src="images/gallery-6.png" alt="" loading="lazy"></div>
+        <!-- 無限スクロール用に複製 -->
+        <div class="gallery-item"><img src="images/gallery-1.png" alt="" loading="lazy"></div>
+        <div class="gallery-item"><img src="images/gallery-2.png" alt="" loading="lazy"></div>
+        <div class="gallery-item"><img src="images/gallery-3.png" alt="" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ブログハイライト -->
+  <section class="section" id="blog">
+    <div class="container">
+      <h2 class="section-title scroll-reveal">
+        <span class="section-title-icon">📖</span>
+        さいしんの記事
+      </h2>
+      <div class="blog-grid" id="blog-grid">
+        <!-- 最新記事はWP REST APIから動的に取得されます -->
+        <div class="blog-loading">記事を読み込み中...</div>
+      </div>
+      <div class="blog-more scroll-reveal">
+        <a href="https://akahara-vlab.com" class="btn btn-primary bounce-hover" target="_blank" rel="noopener">
+          もっと記事を読む
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="var(--color-footer)"/>
+      </svg>
+    </div>
+    <div class="footer-body">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">🔬 あかはらVラボ</div>
+            <p>わさび × あかはら。<br>AIとテクノロジーの実験室</p>
+          </div>
+          <div class="footer-nav">
+            <a href="#about">ふたりについて</a>
+            <a href="#platforms">コンテンツ</a>
+            <a href="#activities">はいしん</a>
+            <a href="#blog">ブログ</a>
+          </div>
+          <div class="footer-social">
+            <a href="https://x.com/akaponpon440" target="_blank" rel="noopener" aria-label="X">𝕏</a>
+            <a href="https://www.youtube.com/channel/UC1dbbwy-RbesfO0Wq0xMAow" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+            <a href="https://www.twitch.tv/akahara_genious" target="_blank" rel="noopener" aria-label="Twitch">🎮</a>
+          </div>
+        </div>
+        <div class="footer-copy">
+          &copy; 2026 あかはらVラボ. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
