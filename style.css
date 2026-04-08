@@ -125,8 +125,8 @@ ul { list-style: none; }
   font-size: 2.25rem;
   white-space: nowrap;
 }
-.nav-logo-icon { font-size: clamp(1.2rem, 2vw, 1.8rem); }
-.nav-logo-text { color: white; transition: var(--transition); font-size: clamp(0.85rem, 1.4vw, 1.05rem); font-weight: 700; white-space: nowrap; }
+.nav-logo-icon { font-size: clamp(1.8rem, 3vw, 2.8rem); }
+.nav-logo-text { color: white; transition: var(--transition); font-size: clamp(1.1rem, 2vw, 1.6rem); font-weight: 700; white-space: nowrap; }
 .nav.scrolled .nav-logo-text { color: var(--color-primary); }
 .nav-links {
   display: flex;
@@ -134,8 +134,8 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 .nav-links a {
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
-  font-weight: 500;
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  font-weight: 700;
   color: rgba(255,255,255,0.9);
   position: relative;
   transition: var(--transition);
