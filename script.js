@@ -1529,4 +1529,126 @@
     }
   })();
 
+  // ===========================
+  // GifMon — 追従フロートCTA
+  // ===========================
+  (function gifmonFloatCta() {
+    var cta = document.getElementById('gifmon-float-cta');
+    var section = document.getElementById('gifmon');
+    if (!cta || !section) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      // セクションが見えていたら非表示、見えていなければ表示
+      cta.classList.toggle('visible', !entries[0].isIntersecting);
+    }, { threshold: 0 });
+
+    observer.observe(section);
+  })();
+
+  // ===========================
+  // GifMon — 期間限定無料バナー
+  // ===========================
+  (function gifmonFreeBanner() {
+    var deadline = new Date('2026-04-20T00:00:00+09:00'); // 4/19 23:59 JST まで
+    var banner = document.getElementById('gifmon-free-banner');
+    var until  = document.getElementById('gifmon-free-until');
+    var floatFree = document.getElementById('gifmon-float-free');
+    if (!banner) return;
+
+    function update() {
+      var now = new Date();
+      if (now >= deadline) {
+        banner.style.display = 'none';
+        if (floatFree) floatFree.style.display = 'none';
+        return;
+      }
+      banner.style.display = '';
+      if (floatFree) floatFree.style.display = '';
+      var diff = deadline - now;
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var parts = [];
+      if (d > 0) parts.push(d + '日');
+      parts.push(h + '時間' + m + '分');
+      until.textContent = '残り ' + parts.join('') + '（4/19まで）';
+    }
+
+    update();
+    setInterval(update, 60000);
+  })();
+
+  // ===========================
+  // GifMon Demo — fake metrics
+  // ===========================
+  (function gifmonDemo() {
+    if (!document.getElementById('gm-demo-mini')) return;
+
+    function rnd(min, max) { return min + Math.random() * (max - min); }
+    function cls(el, v, w, d) {
+      el.classList.remove('gm-warn', 'gm-danger');
+      if (v >= d) el.classList.add('gm-danger');
+      else if (v >= w) el.classList.add('gm-warn');
+    }
+
+    function tick() {
+      var cpu = rnd(30, 72), gpu = rnd(25, 68), ram = rnd(55, 78);
+      var ping = rnd(8, 35), up = rnd(2, 8), dl = rnd(8, 22);
+      var mic = rnd(10, 55), audio = rnd(4, 18), pkt = rnd(0, 0.15), drop = rnd(0, 0.08);
+
+      // Mini
+      var mc = document.getElementById('gm-mini-cpu');
+      mc.textContent = cpu.toFixed(0) + '%'; cls(mc, cpu, 65, 80);
+      var mg = document.getElementById('gm-mini-gpu');
+      mg.textContent = gpu.toFixed(0) + '%'; cls(mg, gpu, 70, 85);
+      var mr = document.getElementById('gm-mini-ram');
+      mr.textContent = ram.toFixed(0) + '%'; cls(mr, ram, 75, 90);
+      var mp = document.getElementById('gm-mini-ping');
+      mp.textContent = ping.toFixed(0) + 'ms'; cls(mp, ping, 100, 200);
+      document.getElementById('gm-mini-up').textContent = up.toFixed(1) + 'M';
+      document.getElementById('gm-mini-dl').textContent = dl.toFixed(1) + 'M';
+
+      // Float mini
+      var fc = document.getElementById('gm-float-cpu');
+      if (fc) {
+        fc.textContent = cpu.toFixed(0) + '%'; cls(fc, cpu, 65, 80);
+        var fg = document.getElementById('gm-float-gpu');
+        fg.textContent = gpu.toFixed(0) + '%'; cls(fg, gpu, 70, 85);
+        var fr = document.getElementById('gm-float-ram');
+        fr.textContent = ram.toFixed(0) + '%'; cls(fr, ram, 75, 90);
+        var fpp = document.getElementById('gm-float-ping');
+        fpp.textContent = ping.toFixed(0) + 'ms'; cls(fpp, ping, 100, 200);
+        document.getElementById('gm-float-up').textContent = up.toFixed(1) + 'M';
+        document.getElementById('gm-float-dl').textContent = dl.toFixed(1) + 'M';
+      }
+
+      // Full
+      function bar(barId, valId, v, w, d, suffix) {
+        var b = document.getElementById(barId);
+        var e = document.getElementById(valId);
+        b.style.width = Math.min(100, v) + '%';
+        e.textContent = v.toFixed(1) + (suffix || '%');
+        b.classList.remove('gm-warn', 'gm-danger');
+        e.classList.remove('gm-warn', 'gm-danger');
+        if (v >= d) { b.classList.add('gm-danger'); e.classList.add('gm-danger'); }
+        else if (v >= w) { b.classList.add('gm-warn'); e.classList.add('gm-warn'); }
+      }
+      bar('gm-full-bar-cpu', 'gm-full-cpu', cpu, 65, 80);
+      bar('gm-full-bar-gpu', 'gm-full-gpu', gpu, 70, 85);
+      bar('gm-full-bar-ram', 'gm-full-ram', ram, 75, 90);
+      bar('gm-full-bar-mic', 'gm-full-mic', mic, 80, 95);
+
+      document.getElementById('gm-full-up').textContent = up.toFixed(2) + ' MB/s';
+      document.getElementById('gm-full-dl').textContent = dl.toFixed(2) + ' MB/s';
+      var fp = document.getElementById('gm-full-ping');
+      fp.textContent = ping.toFixed(0) + ' ms'; cls(fp, ping, 100, 200);
+      document.getElementById('gm-full-pkt').textContent = pkt.toFixed(2) + '%';
+      document.getElementById('gm-full-audio').textContent = audio.toFixed(0) + ' ms';
+      document.getElementById('gm-full-drop').textContent = drop.toFixed(2) + '%';
+    }
+
+    tick();
+    setInterval(tick, 2000);
+  })();
+
 })();

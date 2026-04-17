@@ -1070,6 +1070,314 @@ ul { list-style: none; }
 }
 
 /* ===========================
+   GifMon 販促セクション — プロダクトショーケース
+   =========================== */
+.section-gifmon {
+  background: linear-gradient(to bottom, #060f05 0%, #0c0c0c 30%, #0c0c0c 70%, #0d0d0d 100%);
+  padding: 6% 0;
+  position: relative;
+  z-index: 1;
+}
+.gifmon-showcase { display: flex; justify-content: center; }
+.gifmon-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  max-width: 960px;
+  width: 100%;
+  background: #1a1a28;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.3);
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
+}
+.gifmon-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 80px rgba(0,0,0,0.6), 0 12px 32px rgba(0,0,0,0.35);
+}
+
+/* 左列: Mini + 説明 */
+.gifmon-col-left {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 28px 28px 28px;
+}
+/* 右列: Full */
+.gifmon-col-right {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 28px 28px 0;
+  justify-content: flex-start;
+}
+.gifmon-demo-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+.gifmon-demo-label {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── Mini widget ── */
+.gm-widget-mini {
+  width: 240px; height: 100px;
+  border-radius: 12px;
+  background: rgba(20,20,30,0.85);
+  border: 1px solid rgba(255,255,255,0.10);
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px; color: #e8e8f0;
+}
+.gm-char {
+  width: 64px; height: 64px; flex-shrink: 0;
+  border-radius: 8px; overflow: hidden;
+  background: rgba(255,255,255,0.06);
+}
+.gm-char img { width: 64px; height: 64px; object-fit: contain; image-rendering: pixelated; }
+.gm-char-sm {
+  width: 40px; height: 40px;
+  border-radius: 8px; object-fit: contain;
+  image-rendering: pixelated; flex-shrink: 0;
+  background: rgba(255,255,255,0.06);
+}
+.gm-mini-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.gm-status { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }
+.gm-status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.gm-dot-live { background: #3ddc84; box-shadow: 0 0 6px #3ddc84; }
+.gm-text-live { color: #3ddc84; }
+.gm-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; }
+.gm-m { display: flex; align-items: baseline; gap: 3px; white-space: nowrap; }
+.gm-ml { color: #9090a8; font-size: 9.5px; }
+.gm-mv { color: #e8e8f0; font-size: 10.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.gm-mv.gm-warn { color: #f0c040; }
+.gm-mv.gm-danger { color: #f05050; }
+.gm-arrow-up { color: #6cff9a; }
+.gm-arrow-down { color: #6cb4ff; }
+
+/* ── Full widget ── */
+.gm-widget-full {
+  width: 260px;
+  border-radius: 12px;
+  background: rgba(20,20,30,0.85);
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px; color: #e8e8f0;
+}
+.gm-section + .gm-section { margin-top: 6px; }
+.gm-section-title {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #5a5a72; margin-bottom: 4px;
+  padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.gm-row { display: flex; justify-content: space-between; align-items: center; padding: 2px 0; }
+.gm-rl { font-size: 10px; color: #9090a8; }
+.gm-rv { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; color: #e8e8f0; }
+.gm-rv.gm-warn { color: #f0c040; }
+.gm-rv.gm-danger { color: #f05050; }
+.gm-bar-wrap {
+  flex: 1; height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px; margin: 0 8px; overflow: hidden;
+}
+.gm-bar {
+  height: 100%; border-radius: 2px;
+  background: #6c8aff;
+  transition: width 0.8s ease, background 0.4s ease;
+}
+.gm-bar.gm-warn { background: #f0c040; }
+.gm-bar.gm-danger { background: #f05050; }
+
+/* ── Card body (Mini下の説明) ── */
+.gifmon-card-body {
+  padding: 20px 0 0;
+  display: flex; flex-direction: column; justify-content: flex-start;
+}
+.gifmon-badge {
+  display: inline-block; align-self: flex-start;
+  background: #e8132a; color: #fff;
+  font-size: 0.68rem; font-weight: 800;
+  letter-spacing: 0.1em; padding: 4px 10px;
+  border-radius: 4px; margin-bottom: 14px;
+}
+.gifmon-card-title {
+  font-family: var(--font-main);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 900; color: #e8e8f0;
+  margin-bottom: 14px; line-height: 1.2;
+}
+.gifmon-card-desc {
+  font-size: 17px; color: #9090a8;
+  line-height: 1.9; margin-bottom: 20px;
+}
+.gifmon-btn {
+  display: inline-flex; align-items: center; align-self: flex-start;
+  gap: 8px; padding: 14px 28px;
+  background: #fc4d50; color: #fff;
+  font-family: var(--font-main);
+  font-size: 17px; font-weight: 700;
+  border-radius: 8px; letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(252,77,80,0.3);
+}
+.gifmon-btn:hover {
+  background: #e8363a; transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(252,77,80,0.45);
+}
+.gifmon-push {
+  color: #e8132a;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+.gifmon-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gifmon-features li {
+  font-size: 16px;
+  color: #9090a8;
+  line-height: 1.7;
+  padding-left: 18px;
+  position: relative;
+}
+.gifmon-features li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #fc4d50;
+  font-weight: 700;
+}
+.gifmon-features li strong {
+  color: #c8c8d8;
+}
+.gifmon-free-banner {
+  background: rgba(232, 19, 42, 0.1);
+  border: 2px solid #e8132a;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.gifmon-free-text {
+  font-size: 20px;
+  font-weight: 900;
+  color: #e8132a;
+  animation: badge-pulse 1.8s ease-in-out infinite;
+}
+.gifmon-free-until {
+  font-size: 14px;
+  color: #d88a8a;
+  font-weight: 600;
+}
+.gifmon-btn-icon { font-size: 16px; }
+
+/* ── GifMon 追従フロートCTA ── */
+.gifmon-float-cta {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  background: #1e1e2e;
+  color: #fff;
+  font-family: var(--font-main);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+.gifmon-float-cta.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.gifmon-float-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 4px 14px rgba(0,0,0,0.35);
+}
+.gifmon-float-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #fc4d50;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.gifmon-float-free {
+  background: #fff;
+  color: #e8132a;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: auto;
+  animation: badge-pulse 1.8s ease-in-out infinite;
+}
+.gifmon-float-icon { font-size: 16px; }
+.gifmon-float-text { white-space: nowrap; }
+.gifmon-float-demo {
+  padding: 10px;
+}
+.gm-widget-mini--float {
+  transform: scale(0.92);
+  transform-origin: top left;
+  margin-bottom: -8px;
+  margin-right: -20px;
+}
+
+@media (max-width: 768px) {
+  .section-gifmon { padding-bottom: 5%; }
+  .gifmon-card { grid-template-columns: 1fr; }
+  .gifmon-col-right { display: none; }
+  .gifmon-col-left { padding: 20px 16px; }
+  .gifmon-card-body { padding: 16px 0 0; }
+  .gifmon-card-title { font-size: 22px; }
+  .gifmon-card-desc { font-size: 14px; margin-bottom: 12px; }
+  .gifmon-push { font-size: 15px; margin-bottom: 12px; }
+  .gifmon-features li { font-size: 13px; }
+  .gifmon-free-banner { padding: 8px 12px; }
+  .gifmon-free-text { font-size: 16px; }
+  .gifmon-free-until { font-size: 12px; }
+  .gifmon-btn { font-size: 14px; padding: 10px 20px; }
+  /* フロート */
+  .gifmon-float-cta { bottom: 12px; right: 12px; max-width: 220px; }
+  .gifmon-float-header { font-size: 11px; padding: 8px 10px; }
+  .gifmon-float-demo { padding: 6px; }
+  .gm-widget-mini--float {
+    transform: scale(0.72);
+    margin-bottom: -28px; margin-right: -68px;
+  }
+}
+@media (max-width: 480px) {
+  .gifmon-float-demo { display: none; }
+  .gifmon-float-cta { max-width: none; border-radius: 30px; }
+  .gifmon-float-header { border-radius: 30px; }
+}
+
+/* ===========================
    最新の記事 — スクラップブック
    =========================== */
 .articles-loading {
